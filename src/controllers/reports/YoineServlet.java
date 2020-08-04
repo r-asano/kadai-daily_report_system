@@ -35,8 +35,10 @@ public class YoineServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         EntityManager em = DBUtil.createEntityManager();
 
+        // report-idの取得
         Report r = em.find(Report.class, Integer.parseInt(request.getParameter("id")));
 
+        // 対象のreport-idのyoinecontを呼び出す
         Yoine y = em.createNamedQuery("getSelectYoine", Yoine.class)
                   .setParameter("report_id", r)
                   .getSingleResult();
@@ -47,28 +49,24 @@ public class YoineServlet extends HttpServlet {
             y = new Yoine();
         }
 
-        ////////////////////////////////////////////////////////////
-
-        y.setReportID();
-        y.setYoineCount();
 
         // リクエストパラメーターの取得
         request.setCharacterEncoding("UTF-8");
         String yoine = request.getParameter("action");
 
-        // いいねボタン押されたら
+        // いいねボタン押されたらプラス１
         if (yoine != null) {
 	        // いいねを加算
-	        Yoine yl = new Yoine();
-	        yl.yoinePlus(y);
+	        y.yoinePlus();
         }
 
+        // DBへの登録
         em.getTransaction().begin();
         em.persist(y);
         em.getTransaction().commit();
         em.close();
 
-
+        // アプリケーションスコープに飛ばす
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reports/show.jsp");
         rd.forward(request, response);
 	}
