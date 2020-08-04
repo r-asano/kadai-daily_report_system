@@ -40,10 +40,10 @@
 
 
 				<div>
-				<p><a href="/reports/show?action=yoine">
-				<img src="/WEB-INF/views/pictures/yoine.jpg" alt="いいね！" width="100" height="100"></a>
+				<p><a href="<c:url value='/yoine?action=yoine&id=${report.id}' />">
+				<img src="<c:url value='/WEB-INF/views/pictures/yoine.jpg' />" alt="いいね！" width="100" height="100"></a>
 				</p>
-				<p><font size="5"><b>いいね！：${yoine.yoineCount}</b></font></p>
+				<p><font size="5">いいね！：${yoine.yoineCount}</font></p>
 				</div>
 
 

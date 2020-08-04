@@ -52,8 +52,6 @@ public class Yoine{
     }
 
     public void yoinePlus() {
-        int count = this.getYoineCount();
-        count++;
-        this.setYoineCount(count);
+        this.yoineCount++;
     }
 }
