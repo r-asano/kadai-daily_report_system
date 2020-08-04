@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import models.Report;
+import models.Yoine;
 import utils.DBUtil;
 
 /**
@@ -35,10 +36,12 @@ public class ReportsShowServlet extends HttpServlet {
         EntityManager em = DBUtil.createEntityManager();
 
         Report r = em.find(Report.class, Integer.parseInt(request.getParameter("id")));
+        Yoine y = em.find(Yoine.class, Integer.parseInt(request.getParameter("id")));
 
         em.close();
 
         request.setAttribute("report", r);
+        request.setAttribute("yoine", y);
         request.setAttribute("_token", request.getSession().getId());
 
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reports/show.jsp");
