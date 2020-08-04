@@ -38,6 +38,15 @@
                     </tbody>
                 </table>
 
+
+				<div>
+				<p><a href="/reports/show?action=yoine">
+				<img src="/WebContent/WEB-INF/views/pictures/yoine.jpg" alt="いいね！" width="100" height="100"></a>
+				</p>
+				<p><font size="5"><b>いいね！：${yoine.yoineCount}</b></font></p>
+				</div>
+
+
                 <c:if test="${sessionScope.login_employee.id == report.employee.id}">
                     <p><a href="<c:url value="/reports/edit?id=${report.id}" />">この日報を編集する</a></p>
                 </c:if>
