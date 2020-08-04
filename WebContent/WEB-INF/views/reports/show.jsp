@@ -41,7 +41,7 @@
 
 				<div>
 				<p><a href="/reports/show?action=yoine">
-				<img src="/WebContent/WEB-INF/views/pictures/yoine.jpg" alt="いいね！" width="100" height="100"></a>
+				<img src="/WEB-INF/views/pictures/yoine.jpg" alt="いいね！" width="100" height="100"></a>
 				</p>
 				<p><font size="5"><b>いいね！：${yoine.yoineCount}</b></font></p>
 				</div>
