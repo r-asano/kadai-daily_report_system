@@ -30,24 +30,24 @@ public class Yoine{
 
     @ManyToOne
     @JoinColumn(name = "report_id", nullable = false)
-    private int report_id;
+    private Report report_id;
 
     @Column(name = "yoineCount", nullable = false)
-    private int yoineCount = 0;
+    private Integer yoineCount = 0;
 
-    public int getReportID() {
+    public Report getReportID() {
 		return report_id;
 	}
 
-	public void setReportID(int report_id) {
+	public void setReportID(Report report_id) {
 		this.report_id = report_id;
 	}
 
-	public void setYoineCount(int yoineCount) {
+	public void setYoineCount(Integer yoineCount) {
         this.yoineCount = yoineCount;
     }
 
-    public int getYoineCount() {
+    public Integer getYoineCount() {
         return yoineCount;
     }
 
