@@ -1,6 +1,7 @@
 package controllers.reports;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.servlet.RequestDispatcher;
@@ -38,18 +39,20 @@ public class YoineServlet extends HttpServlet {
         // report-idの取得
         Report r = em.find(Report.class, Integer.parseInt(request.getParameter("id")));
 
-        // 対象のreport-idのyoinecountを呼び出す
-        Yoine y = em.createNamedQuery("getSelectYoine", Yoine.class)
-                  .setParameter("report_id", r)
-                  .getSingleResult();
+        List<Yoine> yList = em.createNamedQuery("getSelectYoine", Yoine.class)
+                .setParameter("report_id", r)
+                .getResultList();
+        Yoine y = null;
 
-        // 初回起動判定
-        // アプリケーションスコープに値がなければnewする
-        if( y == null) {
+        //初回起動判定
+        //アプリケーションスコープに値がなければnewする
+        if( yList.isEmpty()) { //リストが空ならデータがないということなので、新規登録
             y = new Yoine();
-
-            // DBにINSERT
-            em.persist(y);
+            y.setReportID(r);
+            y.setYoineCount(0);
+        }else{
+            //リストが空ではないなら、リストの最初に入っている要素が更新対象のYoine
+            y = yList.get(0);
         }
 
 
