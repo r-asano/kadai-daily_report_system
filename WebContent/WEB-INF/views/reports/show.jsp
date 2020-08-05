@@ -39,12 +39,13 @@
                 </table>
 
 
-				<div>
-				<p><a href="<c:url value='/yoine?action=yoine&id=${report.id}' />">
-				<img src="<c:url value='/WEB-INF/views/pictures/yoine.jpg' />" alt="いいね！" width="100" height="100"></a>
-				</p>
-				<p><font size="5">いいね！：${yoine.yoineCount}</font></p>
-				</div>
+                <div>
+                <p><a href="<c:url value='/yoine?action=yoine&id=${report.id}' />">
+                <img src="<c:url value='../pictures/yoine.jpg' />" alt="いいね！" width="100" height="100"></a>
+                </p>
+                <p><font size="5">reportID:${report.id}</font></p>
+                <p><font size="5">いいね！：${yoine.yoineCount}</font></p>
+                </div>
 
 
                 <c:if test="${sessionScope.login_employee.id == report.employee.id}">

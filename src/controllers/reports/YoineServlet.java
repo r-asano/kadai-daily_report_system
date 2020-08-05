@@ -50,6 +50,7 @@ public class YoineServlet extends HttpServlet {
             y = new Yoine();
             y.setReportID(r);
             y.setYoineCount(0);
+            em.persist(y);
         }else{
             //リストが空ではないなら、リストの最初に入っている要素が更新対象のYoine
             y = yList.get(0);
@@ -70,8 +71,13 @@ public class YoineServlet extends HttpServlet {
         em.getTransaction().commit();
         em.close();
 
-        // アプリケーションスコープに飛ばす
+        request.setAttribute("report", r);
+        request.setAttribute("yoine", y);
+        request.setAttribute("_token", request.getSession().getId());
+
+        // フォワード
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reports/show.jsp");
         rd.forward(request, response);
+
 	}
 }
