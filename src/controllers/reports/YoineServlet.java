@@ -1,8 +1,6 @@
 package controllers.reports;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.servlet.RequestDispatcher;
@@ -41,14 +39,14 @@ public class YoineServlet extends HttpServlet {
         Report r = em.find(Report.class, Integer.parseInt(request.getParameter("id")));
 
         // 対象のreport-idのyoinecountを呼び出す
-        List<Yoine> y = em.createNamedQuery("getSelectYoine", Yoine.class)
+        Yoine y = em.createNamedQuery("getSelectYoine", Yoine.class)
                   .setParameter("report_id", r)
-                  .getResultList();
+                  .getSingleResult();
 
         // 初回起動判定
         // アプリケーションスコープに値がなければnewする
         if( y == null) {
-            y = new ArrayList<Yoine>();
+            y = new Yoine();
 
             // DBにINSERT
             em.persist(y);
